@@ -1,0 +1,11 @@
+.qodo
+# Python
+venv/
+__pycache__/
+*.py[cod]
+
+# AutoML outputs
+outputs/
+
+# System files
+.DS_Store

@@ -1,0 +1,34 @@
+2025-04-02 20:37:29,043 - INFO - Loading data from data/titanic.csv
+2025-04-02 20:37:29,043 - ERROR - Processing failed: name 'os' is not defined
+Traceback (most recent call last):
+  File "/home/ayms/Desktop/Machine Learning & Data Mining/automl-ai/modules/preprocess.py", line 113, in preprocess_data
+    data = pd.read_csv(file_path, chunksize=100000) if os.path.getsize(file_path) > 1e8 else pd.read_csv(file_path)
+                                                       ^^
+NameError: name 'os' is not defined. Did you forget to import 'os'
+2025-04-02 20:38:08,226 - INFO - Loading data from data/titanic.csv
+2025-04-02 20:38:08,243 - ERROR - Processing failed: string indices must be integers, not 'str'
+Traceback (most recent call last):
+  File "/home/ayms/Desktop/Machine Learning & Data Mining/automl-ai/modules/preprocess.py", line 128, in preprocess_data
+    numeric_pipe, categorical_pipe = _get_transformer_pipelines(config)
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ayms/Desktop/Machine Learning & Data Mining/automl-ai/modules/preprocess.py", line 57, in _get_transformer_pipelines
+    handle_unknown=config["preprocessing"]["categorical"]["encoder"]["handle_unknown"],
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+TypeError: string indices must be integers, not 'str'
+2025-04-02 20:41:33,509 - INFO - Loading data from data/titanic.csv
+2025-04-02 20:41:33,570 - INFO - Preprocessing complete. Final shape: (887, 894)
+2025-04-02 21:02:42,643 - INFO - Starting preprocessing...
+2025-04-02 21:02:42,643 - INFO - Loading data from data/titanic.csv
+2025-04-02 21:02:42,697 - INFO - Preprocessing complete. Final shape: (887, 894)
+2025-04-02 21:02:42,697 - INFO - Preprocessed data shape: (887, 894)
+2025-04-02 21:02:42,698 - INFO - Training models...
+2025-04-02 21:02:45,290 - INFO - LogisticRegression: 0.8503
+2025-04-02 21:02:48,471 - INFO - RandomForestClassifier: 0.8688
+2025-04-02 21:02:50,079 - INFO - XGBClassifier: 0.8599
+2025-04-02 21:02:51,547 - INFO - SVC: 0.8595
+2025-04-02 21:02:55,459 - INFO - GradientBoostingClassifier: 0.8671
+2025-04-02 21:02:55,461 - INFO - Best model before tuning: RandomForestClassifier (score: 0.8688)
+2025-04-02 21:02:55,461 - INFO - Tuning RandomForestClassifier...
+2025-04-02 21:03:42,988 - INFO - Best score: 0.8635
+2025-04-02 21:03:44,014 - INFO - Pipeline completed. Results:
+{'best_model': 'RandomForestClassifier', 'best_score': 0.863452280652048, 'best_params': {'n_estimators': 175, 'max_depth': 20, 'min_samples_split': 6}, 'model_path': 'outputs/models/RandomForestClassifier_20250402_210343.pkl', 'feature_count': 894}

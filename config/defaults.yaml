@@ -1,0 +1,35 @@
+models:
+  classification:
+    - "LogisticRegression"          # Fast baseline
+    - "RandomForestClassifier"      # Robust, works out-of-the-box
+    - "XGBClassifier"               # High performance, handles missing values
+    - "SVC"                         # Useful for small datasets (kernel tricks)
+    - "GradientBoostingClassifier"   # Alternative to XGBoost
+  regression:
+    - "LinearRegression"            # Baseline
+    - "RandomForestRegressor"       # Robust
+    - "XGBRegressor"                # High performance
+    - "SVR"                         # For non-linear relationships
+
+metrics:
+  classification:
+    primary: "roc_auc"              # Best for imbalanced data
+    secondary: ["accuracy", "f1_weighted"]
+  regression:
+    primary: "neg_root_mean_squared_error"  # Interpretable units
+    secondary: ["r2", "neg_mean_absolute_error"]
+
+preprocessing:
+  numeric:
+    imputer: "median"               # Options: "mean", "median", "constant"
+    scaler: "standard"              # Options: "standard", "minmax", "none"
+  categorical:
+    imputer: "most_frequent"        # Options: "most_frequent", "constant"
+    encoder: "onehot"               # Options: "onehot", "label"
+  feature_selection:
+    method: "none"                  # Options: "none", "variance_threshold", "selectkbest"
+    params: 
+      threshold: 0.0                # For VarianceThreshold
+      k: 10                         # For SelectKBest
+  balancing:
+    method: "none"                  # Options: "none", "smote", "random_oversample"
