@@ -8,7 +8,7 @@ from sklearn.svm import SVC
 from tqdm import tqdm
 import logging
 import yaml
-from typing import Dict, Tuple
+from typing import Dict, Tuple, Any
 
 # Set up logging
 logging.basicConfig(level=logging.INFO)
@@ -23,43 +23,44 @@ def load_config() -> dict:
         logger.error(f"Failed to load config: {e}")
         raise
 
-def train_models(X: np.ndarray, y: np.ndarray) -> Dict[str, Tuple[object, float]]:
+def train_models(X: np.ndarray, y: np.ndarray, task_type: str = "classification") -> Dict[str, Tuple[Any, float]]:
     """
-    Train and evaluate all classification models in config.
-    Returns: {model_name: (trained_model, avg_cross_val_score)}
+    Train multiple models and return the trained models along with their cross-validation scores.
     """
-    try:
-        config = load_config()
-        models_to_train = config["models"]["classification"]
-        metric = config["metrics"]["classification"]["primary"]
-        
-        results = {}
-        for model_name in tqdm(models_to_train, desc="Training models"):
-            try:
-                # Instantiate the model
-                model = eval(model_name)()  # e.g., LogisticRegression()
-                
-                # Evaluate using 5-fold cross-validation
-                scores = cross_val_score(
-                    model, X, y, 
-                    scoring=metric, 
-                    cv=5, 
-                    n_jobs=-1  # Use all CPU cores
-                )
-                avg_score = np.mean(scores)
-                results[model_name] = (model, avg_score)
-                
-                logger.info(f"{model_name}: {avg_score:.4f}")
-                
-            except Exception as e:
-                logger.warning(f"Failed to train {model_name}: {str(e)}")
-                continue
-        
-        return results
+    from sklearn.model_selection import cross_val_score
+    from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
+    from xgboost import XGBClassifier, XGBRegressor
+    import logging
     
-    except Exception as e:
-        logger.error(f"Training failed: {e}")
-        raise
+    logging.basicConfig(level=logging.INFO)
+    logger = logging.getLogger(__name__)
+
+    models = {}
+    
+    if task_type == "classification":
+        candidate_models = {
+            "RandomForestClassifier": RandomForestClassifier(),
+            "XGBClassifier": XGBClassifier()
+        }
+        scoring = "accuracy"
+    
+    elif task_type == "regression":
+        candidate_models = {
+            "RandomForestRegressor": RandomForestRegressor(),
+            "XGBRegressor": XGBRegressor()
+        }
+        scoring = "r2"
+    
+    else:
+        raise ValueError(f"Unsupported task type: {task_type}")
+
+    for name, model in candidate_models.items():
+        logger.info(f"Training {name}...")
+        score = cross_val_score(model, X, y, scoring=scoring, cv=3, n_jobs=-1).mean()
+        models[name] = (model, score)
+    
+    return models
+
 
 # Test the function
 if __name__ == "__main__":

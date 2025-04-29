@@ -21,26 +21,29 @@ def load_config() -> dict:
         logger.error(f"Failed to load config: {e}")
         raise
 
-def tune_model(model, X: np.ndarray, y: np.ndarray) -> Dict[str, Any]:
+def tune_model(model, X: np.ndarray, y: np.ndarray, task_type: str = "classification") -> Dict[str, Any]:
     """
     Optimize hyperparameters for a given model using Optuna.
     Returns: {'best_params': dict, 'best_score': float}
     """
     try:
         config = load_config()
-        metric = config["metrics"]["classification"]["primary"]
+        metric = config["metrics"][task_type]["primary"]
         
         # Define search space per model type
         def objective(trial):
             params = {}
             
-            if isinstance(model, RandomForestClassifier):
+            from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
+            from xgboost import XGBClassifier, XGBRegressor
+
+            if isinstance(model, (RandomForestClassifier, RandomForestRegressor)):
                 params.update({
                     "n_estimators": trial.suggest_int("n_estimators", 50, 200),
                     "max_depth": trial.suggest_int("max_depth", 3, 20),
                     "min_samples_split": trial.suggest_int("min_samples_split", 2, 10)
                 })
-            elif isinstance(model, XGBClassifier):
+            elif isinstance(model, (XGBClassifier, XGBRegressor)):
                 params.update({
                     "n_estimators": trial.suggest_int("n_estimators", 50, 200),
                     "max_depth": trial.suggest_int("max_depth", 3, 10),
@@ -56,7 +59,7 @@ def tune_model(model, X: np.ndarray, y: np.ndarray) -> Dict[str, Any]:
             return cross_val_score(model, X, y, scoring=metric, cv=3, n_jobs=-1).mean()
         
         # Run optimization
-        study = optuna.create_study(direction="maximize")
+        study = optuna.create_study(direction="maximize" if task_type == "classification" else "minimize")
         with tqdm(total=50, desc="Tuning") as pbar:
             def callback(study, trial):
                 pbar.update(1)

@@ -32,3 +32,178 @@ TypeError: string indices must be integers, not 'str'
 2025-04-02 21:03:42,988 - INFO - Best score: 0.8635
 2025-04-02 21:03:44,014 - INFO - Pipeline completed. Results:
 {'best_model': 'RandomForestClassifier', 'best_score': 0.863452280652048, 'best_params': {'n_estimators': 175, 'max_depth': 20, 'min_samples_split': 6}, 'model_path': 'outputs/models/RandomForestClassifier_20250402_210343.pkl', 'feature_count': 894}
+2025-04-29 01:26:42,706 - INFO - Starting preprocessing...
+2025-04-29 01:26:42,707 - INFO - Loading data from data/titanic.csv
+2025-04-29 01:26:42,723 - ERROR - Preprocessing failed: Target column 'data/' not found in data
+Traceback (most recent call last):
+  File "/home/ayms/Desktop/Machine Learning & Data Mining/automl-ai/modules/preprocess.py", line 110, in preprocess_data
+    raise ValueError(f"Target column '{target_column}' not found in data")
+ValueError: Target column 'data/' not found in data
+2025-04-29 01:26:42,724 - ERROR - Pipeline failed: Target column 'data/' not found in data
+Traceback (most recent call last):
+  File "/home/ayms/Desktop/Machine Learning & Data Mining/automl-ai/pipelines/classification.py", line 40, in run_classification
+    X, y = preprocess_data(data_path, target_column)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ayms/Desktop/Machine Learning & Data Mining/automl-ai/modules/preprocess.py", line 110, in preprocess_data
+    raise ValueError(f"Target column '{target_column}' not found in data")
+ValueError: Target column 'data/' not found in data
+2025-04-29 01:27:11,012 - INFO - Starting preprocessing...
+2025-04-29 01:27:11,012 - INFO - Loading data from data/titanic.csv
+2025-04-29 01:27:11,068 - INFO - Preprocessing complete. Final shape: (887, 894)
+2025-04-29 01:27:11,068 - INFO - Preprocessed data shape: (887, 894)
+2025-04-29 01:27:11,069 - INFO - Training models...
+2025-04-29 01:27:14,584 - INFO - LogisticRegression: 0.8503
+2025-04-29 01:27:17,321 - INFO - RandomForestClassifier: 0.8701
+2025-04-29 01:27:18,799 - INFO - XGBClassifier: 0.8599
+2025-04-29 01:27:20,336 - INFO - SVC: 0.8595
+2025-04-29 01:27:23,186 - INFO - GradientBoostingClassifier: 0.8695
+2025-04-29 01:27:23,187 - INFO - Best model before tuning: RandomForestClassifier (score: 0.8701)
+2025-04-29 01:27:23,187 - INFO - Tuning RandomForestClassifier...
+2025-04-29 01:28:01,726 - INFO - Best score: 0.8643
+2025-04-29 01:28:02,331 - INFO - Pipeline completed. Results:
+{'best_model': 'RandomForestClassifier', 'best_score': 0.8642560147358053, 'best_params': {'n_estimators': 131, 'max_depth': 20, 'min_samples_split': 5}, 'model_path': 'outputs/models/RandomForestClassifier_20250429_012802.pkl', 'feature_count': 894}
+2025-04-29 01:40:13,997 - INFO - Starting preprocessing...
+2025-04-29 01:40:13,998 - INFO - Loading data from data/Iris.csv
+2025-04-29 01:40:14,005 - ERROR - Preprocessing failed: Target column 'sepal_length' not found in data
+Traceback (most recent call last):
+  File "/home/ayms/Desktop/Machine Learning & Data Mining/automl-ai/modules/preprocess.py", line 110, in preprocess_data
+    raise ValueError(f"Target column '{target_column}' not found in data")
+ValueError: Target column 'sepal_length' not found in data
+2025-04-29 01:40:14,006 - ERROR - Pipeline failed: Target column 'sepal_length' not found in data
+Traceback (most recent call last):
+  File "/home/ayms/Desktop/Machine Learning & Data Mining/automl-ai/pipelines/regression.py", line 40, in run_regression
+    X, y = preprocess_data(data_path, target_column)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ayms/Desktop/Machine Learning & Data Mining/automl-ai/modules/preprocess.py", line 110, in preprocess_data
+    raise ValueError(f"Target column '{target_column}' not found in data")
+ValueError: Target column 'sepal_length' not found in data
+2025-04-29 01:40:57,589 - INFO - Starting preprocessing...
+2025-04-29 01:40:57,589 - INFO - Loading data from data/Iris.csv
+2025-04-29 01:40:57,616 - INFO - Preprocessing complete. Final shape: (150, 7)
+2025-04-29 01:40:57,617 - INFO - Preprocessed data shape: (150, 7)
+2025-04-29 01:40:57,617 - INFO - Training models...
+2025-04-29 01:40:57,617 - INFO - Training RandomForestRegressor...
+2025-04-29 01:41:00,662 - INFO - Training XGBRegressor...
+2025-04-29 01:41:02,511 - INFO - Best model before tuning: RandomForestRegressor (score: -0.8049)
+2025-04-29 01:41:02,511 - INFO - Tuning RandomForestRegressor...
+2025-04-29 01:41:23,327 - INFO - Best score: -0.6904
+2025-04-29 01:41:23,536 - INFO - Pipeline completed. Results:
+{'best_model': 'RandomForestRegressor', 'best_score': -0.6903779764028526, 'best_params': {'n_estimators': 52, 'max_depth': 14, 'min_samples_split': 7}, 'model_path': 'outputs/models/RandomForestRegressor_20250429_014123.pkl', 'feature_count': 7}
+2025-04-29 01:42:05,920 - INFO - Starting preprocessing...
+2025-04-29 01:42:05,920 - INFO - Loading data from data/titanic.csv
+2025-04-29 01:42:05,964 - INFO - Preprocessing complete. Final shape: (887, 894)
+2025-04-29 01:42:05,964 - INFO - Preprocessed data shape: (887, 894)
+2025-04-29 01:42:05,964 - INFO - Training models...
+2025-04-29 01:42:05,965 - INFO - Training RandomForestClassifier...
+2025-04-29 01:42:08,765 - INFO - Training XGBClassifier...
+2025-04-29 01:42:11,204 - INFO - Best model before tuning: RandomForestClassifier (score: 0.8174)
+2025-04-29 01:42:11,204 - INFO - Tuning RandomForestClassifier...
+2025-04-29 01:42:52,056 - INFO - Best score: 0.8626
+2025-04-29 01:42:52,661 - INFO - Pipeline completed. Results:
+{'best_model': 'RandomForestClassifier', 'best_score': 0.8625991952540368, 'best_params': {'n_estimators': 88, 'max_depth': 19, 'min_samples_split': 7}, 'model_path': 'outputs/models/RandomForestClassifier_20250429_014252.pkl', 'feature_count': 894}
+2025-04-29 01:44:25,682 - INFO - Starting preprocessing...
+2025-04-29 01:44:25,682 - INFO - Loading data from data/House
+2025-04-29 01:44:25,684 - ERROR - Preprocessing failed: [Errno 2] No such file or directory: 'data/House'
+Traceback (most recent call last):
+  File "/home/ayms/Desktop/Machine Learning & Data Mining/automl-ai/modules/preprocess.py", line 102, in preprocess_data
+    data = pd.read_csv(file_path)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 948, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 611, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 1448, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 1705, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/pandas/io/common.py", line 863, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data/House'
+2025-04-29 01:44:25,686 - ERROR - Pipeline failed: [Errno 2] No such file or directory: 'data/House'
+Traceback (most recent call last):
+  File "/home/ayms/Desktop/Machine Learning & Data Mining/automl-ai/pipelines/regression.py", line 40, in run_regression
+    X, y = preprocess_data(data_path, target_column)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ayms/Desktop/Machine Learning & Data Mining/automl-ai/modules/preprocess.py", line 102, in preprocess_data
+    data = pd.read_csv(file_path)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 948, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 611, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 1448, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 1705, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/pandas/io/common.py", line 863, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data/House'
+2025-04-29 01:44:44,614 - INFO - Starting preprocessing...
+2025-04-29 01:44:44,615 - INFO - Loading data from data/House
+2025-04-29 01:44:44,616 - ERROR - Preprocessing failed: [Errno 2] No such file or directory: 'data/House'
+Traceback (most recent call last):
+  File "/home/ayms/Desktop/Machine Learning & Data Mining/automl-ai/modules/preprocess.py", line 102, in preprocess_data
+    data = pd.read_csv(file_path)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 948, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 611, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 1448, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 1705, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/pandas/io/common.py", line 863, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data/House'
+2025-04-29 01:44:44,618 - ERROR - Pipeline failed: [Errno 2] No such file or directory: 'data/House'
+Traceback (most recent call last):
+  File "/home/ayms/Desktop/Machine Learning & Data Mining/automl-ai/pipelines/regression.py", line 40, in run_regression
+    X, y = preprocess_data(data_path, target_column)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ayms/Desktop/Machine Learning & Data Mining/automl-ai/modules/preprocess.py", line 102, in preprocess_data
+    data = pd.read_csv(file_path)
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 948, in read_csv
+    return _read(filepath_or_buffer, kwds)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 611, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 1448, in __init__
+    self._engine = self._make_engine(f, self.engine)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/pandas/io/parsers/readers.py", line 1705, in _make_engine
+    self.handles = get_handle(
+                   ^^^^^^^^^^^
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/pandas/io/common.py", line 863, in get_handle
+    handle = open(
+             ^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'data/House'
+2025-04-29 01:45:16,619 - INFO - Starting preprocessing...
+2025-04-29 01:45:16,619 - INFO - Loading data from data/HousePricePredictionDataset.csv
+2025-04-29 01:45:16,664 - INFO - Preprocessing complete. Final shape: (2000, 16)
+2025-04-29 01:45:16,665 - INFO - Preprocessed data shape: (2000, 16)
+2025-04-29 01:45:16,665 - INFO - Training models...
+2025-04-29 01:45:16,665 - INFO - Training RandomForestRegressor...
+2025-04-29 01:45:20,123 - INFO - Training XGBRegressor...
+2025-04-29 01:45:21,815 - INFO - Best model before tuning: RandomForestRegressor (score: -0.0729)
+2025-04-29 01:45:21,815 - INFO - Tuning RandomForestRegressor...
+2025-04-29 01:46:25,967 - INFO - Best score: -287893.0250
+2025-04-29 01:46:27,469 - INFO - Pipeline completed. Results:
+{'best_model': 'RandomForestRegressor', 'best_score': -287893.0249555689, 'best_params': {'n_estimators': 92, 'max_depth': 16, 'min_samples_split': 4}, 'model_path': 'outputs/models/RandomForestRegressor_20250429_014627.pkl', 'feature_count': 16}
