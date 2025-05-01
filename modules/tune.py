@@ -66,11 +66,17 @@ def tune_model(model, X: np.ndarray, y: np.ndarray, task_type: str = "classifica
             
             study.optimize(objective, n_trials=50, callbacks=[callback])
         
-        logger.info(f"Best score: {study.best_value:.4f}")
+        # Flip negative scores for interpretability
+        best_score = study.best_value
+        if metric.startswith("neg_"):
+            best_score = -best_score  # Convert to positive for RMSE/MAE
+
+        logger.info(f"Best score: {best_score:.4f}")
         return {
             "best_params": study.best_params,
-            "best_score": study.best_value
+            "best_score": best_score
         }
+
     
     except Exception as e:
         logger.error(f"Tuning failed: {e}")

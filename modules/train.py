@@ -6,6 +6,7 @@ from sklearn.linear_model import LogisticRegression
 from xgboost import XGBClassifier
 from sklearn.svm import SVC
 from tqdm import tqdm
+from evaluate import evaluate_model
 import logging
 import yaml
 from typing import Dict, Tuple, Any

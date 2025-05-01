@@ -207,3 +207,77 @@ FileNotFoundError: [Errno 2] No such file or directory: 'data/House'
 2025-04-29 01:46:25,967 - INFO - Best score: -287893.0250
 2025-04-29 01:46:27,469 - INFO - Pipeline completed. Results:
 {'best_model': 'RandomForestRegressor', 'best_score': -287893.0249555689, 'best_params': {'n_estimators': 92, 'max_depth': 16, 'min_samples_split': 4}, 'model_path': 'outputs/models/RandomForestRegressor_20250429_014627.pkl', 'feature_count': 16}
+2025-04-29 02:11:50,462 - INFO - Starting preprocessing...
+2025-04-29 02:11:50,462 - INFO - Loading data from data/HousePrice.csv
+2025-04-29 02:11:50,492 - INFO - Preprocessing complete. Final shape: (2000, 16)
+2025-04-29 02:11:50,492 - INFO - Preprocessed data shape: (2000, 16)
+2025-04-29 02:11:50,492 - INFO - Training models...
+2025-04-29 02:11:50,493 - INFO - Training RandomForestClassifier...
+2025-04-29 02:11:50,514 - ERROR - Pipeline failed: n_splits=3 cannot be greater than the number of members in each class.
+Traceback (most recent call last):
+  File "/home/ayms/Desktop/Machine Learning & Data Mining/automl-ai/pipelines/classification.py", line 45, in run_classification
+    models = train_models(X, y)
+             ^^^^^^^^^^^^^^^^^^
+  File "/home/ayms/Desktop/Machine Learning & Data Mining/automl-ai/modules/train.py", line 59, in train_models
+    score = cross_val_score(model, X, y, scoring=scoring, cv=3, n_jobs=-1).mean()
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/sklearn/utils/_param_validation.py", line 213, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/sklearn/model_selection/_validation.py", line 719, in cross_val_score
+    cv_results = cross_validate(
+                 ^^^^^^^^^^^^^^^
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/sklearn/utils/_param_validation.py", line 213, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/sklearn/model_selection/_validation.py", line 430, in cross_validate
+    results = parallel(
+              ^^^^^^^^^
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/sklearn/utils/parallel.py", line 67, in __call__
+    return super().__call__(iterable_with_config)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/joblib/parallel.py", line 2007, in __call__
+    return output if self.return_generator else list(output)
+                                                ^^^^^^^^^^^^
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/joblib/parallel.py", line 1650, in _get_outputs
+    yield from self._retrieve()
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/joblib/parallel.py", line 1754, in _retrieve
+    self._raise_error_fast()
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/joblib/parallel.py", line 1789, in _raise_error_fast
+    error_job.get_result(self.timeout)
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/joblib/parallel.py", line 745, in get_result
+    return self._return_or_raise()
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/joblib/parallel.py", line 763, in _return_or_raise
+    raise self._result
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/joblib/parallel.py", line 1469, in dispatch_one_batch
+    islice = list(itertools.islice(iterator, big_batch_size))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/sklearn/utils/parallel.py", line 63, in <genexpr>
+    iterable_with_config = (
+                           ^
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/sklearn/model_selection/_validation.py", line 430, in <genexpr>
+    results = parallel(
+                      ^
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/sklearn/model_selection/_split.py", line 377, in split
+    for train, test in super().split(X, y, groups):
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/sklearn/model_selection/_split.py", line 108, in split
+    for test_index in self._iter_test_masks(X, y, groups):
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/sklearn/model_selection/_split.py", line 770, in _iter_test_masks
+    test_folds = self._make_test_folds(X, y)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/ayms/anaconda3/envs/ML/lib/python3.12/site-packages/sklearn/model_selection/_split.py", line 732, in _make_test_folds
+    raise ValueError(
+ValueError: n_splits=3 cannot be greater than the number of members in each class.
+2025-04-29 02:12:44,575 - INFO - Starting preprocessing...
+2025-04-29 02:12:44,575 - INFO - Loading data from data/HousePrice.csv
+2025-04-29 02:12:44,618 - INFO - Preprocessing complete. Final shape: (2000, 16)
+2025-04-29 02:12:44,618 - INFO - Preprocessed data shape: (2000, 16)
+2025-04-29 02:12:44,618 - INFO - Training models...
+2025-04-29 02:12:44,618 - INFO - Training RandomForestRegressor...
+2025-04-29 02:12:49,344 - INFO - Training XGBRegressor...
+2025-04-29 02:12:51,078 - INFO - Best model before tuning: RandomForestRegressor (score: -0.0709)
+2025-04-29 02:12:51,079 - INFO - Tuning RandomForestRegressor...
+2025-04-29 02:14:15,121 - INFO - Best score: 286933.9002
+2025-04-29 02:14:16,845 - INFO - Pipeline completed. Results:
+{'best_model': 'RandomForestRegressor', 'best_score': 286933.9001532811, 'best_params': {'n_estimators': 108, 'max_depth': 13, 'min_samples_split': 3}, 'model_path': 'outputs/models/RandomForestRegressor_20250429_021416.pkl', 'feature_count': 16}
