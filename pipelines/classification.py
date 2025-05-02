@@ -7,6 +7,8 @@ from pathlib import Path
 from datetime import datetime
 import logging
 from tqdm import tqdm
+from modules.evaluate import evaluate_model
+from modules.report_generator import generate_pdf_report
 
 # Fix import paths
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -53,6 +55,18 @@ def run_classification(data_path: str, target_column: str) -> Dict[str, Any]:
         # Update model with best parameters
         model.set_params(**tuning_results["best_params"])
         model.fit(X, y)  # Final training on full data
+
+        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+        model_path = f"outputs/models/{best_model_name}_{timestamp}.pkl"
+        joblib.dump(model, model_path)
+
+        # Evaluate and generate report
+        eval_results = evaluate_model(model, X, y, task_type="classification")
+        report_path = generate_pdf_report(
+            {**results, **eval_results}, eval_results["plot_paths"], task_type="classification"
+        )
+
+        results["report_path"] = report_path
         
         # 4. Save artifacts
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")

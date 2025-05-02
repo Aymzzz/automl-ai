@@ -110,6 +110,10 @@ def preprocess_data(
                 raise ValueError(f"Target column '{target_column}' not found in data")
             y = data[target_column]
             X = data.drop(columns=[target_column])
+            
+            # Encode target labels (if categorical)
+            le = LabelEncoder()
+            y = le.fit_transform(y)  # Convert labels to numerical
         else:
             X = data
             y = None
@@ -142,7 +146,7 @@ def preprocess_data(
         logger.error(f"Preprocessing failed: {e}", exc_info=True)
         raise
 
-if __name__ == "__main__":
-    # Example usage
-    X, y = preprocess_data("data/titanic.csv", target_column="Survived")
-    print(f"Processed data shape: {X.shape}, Target shape: {y.shape if y is not None else 'None'}")
+# if __name__ == "__main__":
+#     # Example usage
+#     X, y = preprocess_data("data/titanic.csv", target_column="Survived")
+#     print(f"Processed data shape: {X.shape}, Target shape: {y.shape if y is not None else 'None'}")
